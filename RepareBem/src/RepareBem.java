@@ -21,6 +21,11 @@ public class RepareBem{
     }
 
     public void cadastrarReparo(String id, String descricao, double preco){
+        for(Reparo rep: listaReparo){
+            if(id == rep.getId()){
+                throw new IllegalArgumentException("Reparo já exixtente.");
+            }
+        }
         Reparo reparo = new Reparo(id, descricao, preco);
         listaReparo.add(reparo);
     }

@@ -1,4 +1,6 @@
 package src;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author José Kauan Pereira dos Reis
@@ -11,7 +13,7 @@ public class OrdemServico{
     private String nome;
     private String telefone;
     private String pecaRoupa;
-    private Reparo[] reparos;
+    private List<Reparo> reparos;
     private String status;
     private int indice;
 
@@ -23,8 +25,7 @@ public class OrdemServico{
         this.telefone = telefone;
         this.pecaRoupa = pecaRoupa;
         this.status = "Não Iniciado.";
-        reparos = new Reparo[10];
-        this.indice = 0;
+        reparos = new ArrayList<>();
     }
 
 
@@ -41,13 +42,10 @@ public class OrdemServico{
         return this.pecaRoupa;
     }
     public int getQuantidadeReparos(){
-        return reparos.length;
+        return reparos.size();
     }
-    public String  getStatus(){
+    public String getStatus(){
         return this.status;
-    }
-    public int getIndice(){
-        return this.indice;
     }
 
     /**
@@ -71,8 +69,8 @@ public class OrdemServico{
      */
     public double getPrecoTotal(){
         double precoTotal = 0;
-        for(int i = 0; i > reparos.length; i ++){
-            precoTotal += reparos[i].getPreco();
+        for(int i = 0; i > reparos.size(); i ++){
+            precoTotal += reparos.get(i).getPreco();
         }
 
         return precoTotal;
@@ -87,9 +85,8 @@ public class OrdemServico{
     }
 
     public void adicionaReparo(Reparo rep){
-        if(this.getIndice() < 10){
-            this.reparos[indice] = rep;
-            indice ++;
+        if(this.getQuantidadeReparos() < 10){
+            this.reparos.add(rep);
         }
     }
 
