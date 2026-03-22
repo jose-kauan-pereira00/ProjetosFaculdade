@@ -1,0 +1,75 @@
+						--Sistema-- Esse Documento é meramente para ajudar o Autor para checar algumas coisas
+
+-  para permitir que moradores se cadastrem, registrem entregas de materiais recicláveis em ecopontos
+
+__(para avaliar, talvez moradores possuam ecopontos como atributos)__
+
+---
+
+______Morador(classe)_____
+
+__atributos____
+
+-CPF(identificador Único e 11 Digitos)
+-nome
+- Crédito__talves
+-senha(pode Ser Alterada e mim. 8 caract.)
+-Residencia(7 caract. e deve ter letras e numeros)
+
+__métodos__ 
+
++setSenha
++toString
+--------
+
+______OrientacaoAmbiental(Classe Abstrata)________
+___atributos___
+
+-autor
+-tipo(RECICLAGEM, ECONOMIA DE ÁGUA, ECONOMIA DE ENERGIA ou COMPOSTAGEM)
+-colecaoOrdenada
+
+__pode conter__
+ -itens textuais(Os itens textuais correspondem a conteúdos escritos com limite máximo de 500 caracteres.)
+ -itens de mídia(Os itens de mídia representam links para conteúdos de áudio ou vídeo, acompanhados de um título e daduração em segundos.)
+ -itens de fonte informativa(s itens de fonte informativa representam referências, contendo título, fonte, ano de publicação, indicação de verificação e grau de relevância (valores inteiros variando de 1 a 5, sendo 5 o grau mais relevante).)
+
+
+-------
+
+Cada orientação possui um autor, um tipo e uma coleção ordenada de itens informativos, sendo identificada pela sua posição na ordem de inserção no sistema, que se inicia por 0.
+
+orientação deve ser identificada pela ordem em que foi criada, retornando um identificador numérico que será utilizado em operações posteriores.
+
+Uma orientação deve aceitar a inclusão de itens informativos em ordem de inserção, contemplando conteúdos textuais, conteúdos de mídia e fontes informativas.
+
+Uma orientação pode conter -itens textuais-, -itens de mídia- ou -itens de fonte informativa-.
+
+
+O sistema também deve permitir listar todas as orientações cadastradas, bem como visualizar uma orientação específica de forma resumida e detalhada. Na visualização resumida devem aparecer o autor e o conteúdo essencial de cada item; na visualização detalhada devem ser incluídos também metadados, como tamanho do texto, duração da mídia e dados de verificação e relevância das fontes. A exibição deve ser por ordem inversa do registro, do mais recente para o mais antigo.
+
+
+______Pontuação de engajamento_____
+
+Para itens textuais, a pontuação é proporcional ao tamanho do texto. O sistema deve atribuir 1 ponto a cada 10 caracteres do texto, considerando truncamento no cálculo, de modo que frações sejam descartadas. Textos com menos de 50 caracteres não pontuam, de forma a desencorajar contribuições excessivamente curtas. 
+
+Para itens de mídia, a pontuação é proporcional ao tempo de duração do conteúdo. O sistema deve atribuir 5 créditos a cada minuto completo de duração, aplicando truncamento ao converter segundos em minutos, de modo que apenas minutos inteiros sejam considerados. 
+
+Para itens de fonte informativa, a pontuação depende da verificação da fonte. Se a fonte estiver marcada como verificada, o item gera 15 créditos; caso contrário, gera 5 créditos. A relevância informada para a fonte é utilizada apenas para fins de visualização detalhada, não alterando a pontuação. 
+
+
+-Menos de 5 curtidas: fator é 0
+-Entre 5 e 10 curtidas: fator é 1
+-Entre 11 e 50 curtidas: fator é 2
+-A partir de 50 curtidas: fator é 3
+A pontuação final de um morador é a soma das pontuações de todas suas orientações.
+
+Os créditos acumulados são utilizados como critério de elegibilidade para a distribuição de cupons de desconto em estabelecimentos conveniados ao município, especialmente supermercados, farmácias e lojas de utilidades básicas. O sistema EcoPontos não é responsável pela gestão financeira dos cupons, mas fornece as métricas necessárias para que a administração pública defina prioridades de distribuição, limites de troca e políticas de incentivo. O sistema deve disponibilizar um ranking de moradores ordenado por engajamento, de forma que seja possível identificar os participantes que possuem mais créditos. Em caso de empate, deve-se aplicar um critério de desempate consistente definido na implementação, como ordem alfabética do nome.
+
+______Registro de Entregas em Ecopontos______
+___atributos__
+-IdUnicoPorMorador
+-tipo de Materia
+-descrição
+-link de comprovação
+-quantidade entregue, na unidade definida pelo tipo de material.
